@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Profile - Phạm Văn Tiến</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Profile Card */
+        .profile-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: slideInLeft 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 6px solid linear-gradient(135deg, #667eea, #764ba2);
+            margin-bottom: 25px;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            animation: zoomIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .position {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .gift-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gift-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .gift-btn:active {
+            transform: translateY(-2px);
+        }
+
+        /* Message Section */
+        .message-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: slideInRight 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+        }
+
+        .message-form input, 
+        .message-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .message-form input:focus,
+        .message-form textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .message-form textarea {
+            resize: vertical;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .message-form button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            margin-top: 10px;
+        }
+
+        .message-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .messages {
+            margin-top: 25px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .message {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid #667eea;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .message p {
+            color: #555;
+            margin: 5px 0 0 0;
+            line-height: 1.5;
+        }
+
+        /* Firework Effect */
+        .firework {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .profile-container,
+            .message-container {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 2em;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .links {
+                gap: 10px;
+            }
+
+            .link-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-container">
+            <img src="https://scontent.fhan5-6.fna.fbcdn.net/v/t39.30808-6/596815495_2705151629829353_9037669975520406841_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHZriL4yni0N5It3s5P2YFqxdLOq0h36-HF0s6rSHfr4bK4tLnKdg95ugWPHtY1AFtyhS3jb5a9xH9lGT-gbqbX&_nc_ohc=a_YiomzZbQYQ7kNvwGDHjt_&_nc_oc=AdpmRAFR6PCNnSyP-u6qzf-sZ0TLX0S-CPKBPLr8cnCxCe1ZQ8FT2NE4oQXoAu86Tm0&_nc_zt=23&_nc_ht=scontent.fhan5-6.fna&_nc_gid=wQiO7y42Zkx8zeVZ9HbTkQ&_nc_ss=7a3a8&oh=00_Af3Gv2G3trfMp2AhI_hAG0IQ9Uqt8L9q1NYwbS1EDySZLA&oe=69E51453" alt="Ảnh đại diện" class="profile-image">
+            <h1 class="name">Phạm Văn Tiến</h1>
+            <p class="position">💼 P. RD tại JOYWORK</p>
+            <div class="links">
+                <a href="#" class="link-btn">📱 Facebook</a>
+                <a href="#" class="link-btn">💬 Zalo</a>
+                <a href="#" class="link-btn">🔗 LinkedIn</a>
+            </div>
+            <button class="gift-btn" onclick="launchFireworks()">🎉 Tặng quà</button>
+        </div>
+
+        <div class="message-container">
+            <h2>✨ Để lại lời nhắn</h2>
+            <form class="message-form" onsubmit="addMessage(event)">
+                <input type="text" id="senderName" placeholder="Tên của bạn" required>
+                <textarea id="messageText" placeholder="Lời nhắn..." rows="4" required></textarea>
+                <button type="submit">📤 Gửi</button>
+            </form>
+            <div class="messages" id="messagesList"></div>
+        </div>
+    </div>
+
+    <script>
+        function launchFireworks() {
+            const colors = ['#ff6b6b', '#ffd93d', '#6bcf7f', '#4d96ff', '#f093fb', '#667eea'];
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    
+                    const angle = (i / 60) * Math.PI * 2;
+                    const velocity = 8;
+                    const tx = Math.cos(angle) * velocity * 30;
+                    const ty = Math.sin(angle) * velocity * 30;
+                    
+                    firework.style.left = (window.innerWidth / 2) + 'px';
+                    firework.style.top = (window.innerHeight / 2) + 'px';
+                    firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    firework.style.setProperty('--tx', tx + 'px');
+                    firework.style.setProperty('--ty', ty + 'px');
+                    
+                    document.body.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1500);
+                }, i * 15);
+            }
+        }
+
+        function addMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const message = document.getElementById('messageText').value;
+            const submitBtn = event.target.querySelector('button');
+            const messagesList = document.getElementById('messagesList');
+            
+            // Disable button và hiển thị loading
+            submitBtn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Đang gửi...';
+            
+            // Gửi tới server
+            fetch('http://localhost:3000/api/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Thêm tin nhắn vào danh sách
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message';
+                    messageDiv.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+                    messagesList.insertBefore(messageDiv, messagesList.firstChild);
+                    
+                    // Xóa form
+                    document.getElementById('senderName').value = '';
+                    document.getElementById('messageText').value = '';
+                    
+                    // Thành công
+                    showNotification('✅ ' + data.message, 'success');
+                } else {
+                    showNotification('❌ ' + (data.message || 'Lỗi khi gửi'), 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('❌ Lỗi: ' + error.message, 'error');
+            })
+            .finally(() => {
+                // Restore button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                background: ${type === 'success' ? '#6bcf7f' : '#ff6b6b'};
+                color: white;
+                border-radius: 12px;
+                font-weight: 600;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
